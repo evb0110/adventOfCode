@@ -50,12 +50,11 @@ for ^1_000 -> $x {
       my $xTo = $direction<xTo>;
       my $yTo = $direction<yTo>;
 
-      if inside( $x, $y, $xFrom, $yFrom, $xTo, $yTo ) {
+      if $xFrom <= $x <= $xTo and $yFrom <= $y <= $yTo {
         $light = switcher( $command, $light );
       }
     }
     $counter += $light;
-
   }
 }
 
