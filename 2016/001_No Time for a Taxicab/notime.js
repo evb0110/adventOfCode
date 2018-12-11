@@ -27,15 +27,14 @@ const makeStep = (directionIndex, coordinates, instruction) => {
     case 2: coordinates[1] -= number; break;
     case 3: coordinates[0] -= number; break;
   }
-  
-  return [directionIndex, coordinates];
+  return {directionIndex, coordinates};
  }
 
 const instructions = calculateInstructions(input);
 
 instructions.forEach((instruction) => {
-  [directionIndex, coordinates] = 
-    makeStep(directionIndex, coordinates, instruction);
+  ({directionIndex, coordinates} = 
+    makeStep(directionIndex, coordinates, instruction));
 })
 
 console.log(coordinates.reduce((a,b) => a+b)); 
