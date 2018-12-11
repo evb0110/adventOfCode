@@ -1,6 +1,7 @@
 const fs = require('fs');
 
-const input = fs.readFileSync('input.txt', 'utf-8').split(',').map(el => el.trim());
+const input = fs.readFileSync('input.txt', 'utf-8')
+                .split(',').map(el => el.trim());
 
 let directionIndex = 0; // 0123 => NESW
 let coordinates = [0, 0];
@@ -17,7 +18,7 @@ const calculateInstructions = (input) => {
 }
 
 const makeStep = (directionIndex, coordinates, instruction) => {
-  const { rotation, number } = instruction;
+  ({ rotation, number } = instruction);
   directionIndex += (rotation == 'R') ? 1 : 3;
   directionIndex = directionIndex % 4;
   
