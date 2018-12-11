@@ -11,6 +11,10 @@ const initialState = {
   directionIndex: initialDirectionIndex, 
   coordinates: initialCoordinates 
 };
+const track = [];
+track.push(initialCoordinates);
+const trackObject = {};
+trackObject[initialCoordinates]++;
 
 const calculateInstructions = (input) => {
   const instructions = [];
