@@ -3,9 +3,14 @@ const fs = require('fs');
 const input = fs.readFileSync('input.txt', 'utf-8')
   .split(',').map(el => el.trim());
 
-let directionIndex = 0; 
+const initialDirectionIndex = 0; 
   // 0123 => NorthEastSouthWest
-let coordinates = [0, 0];
+const initialCoordinates = [0, 0];
+  // x and y
+const initialState = { 
+  directionIndex: initialDirectionIndex, 
+  coordinates: initialCoordinates 
+};
 
 const calculateInstructions = (input) => {
   const instructions = [];
@@ -17,7 +22,7 @@ const calculateInstructions = (input) => {
   return instructions;
 }
 
-const makeStep = (directionIndex, coordinates, instruction) => {
+const makeStep = ({directionIndex, coordinates}, instruction) => {
   ({ rotation, number } = instruction);
   directionIndex += (rotation == 'R') ? 1 : 3;
   directionIndex = directionIndex % 4;
@@ -34,14 +39,15 @@ const makeStep = (directionIndex, coordinates, instruction) => {
 
 const instructions = calculateInstructions(input);
 
-
-let result = instructions.reduce(
-  (acc, instruction) => makeStep(
-    acc.directionIndex, acc.coordinates, instruction
+const finalState = instructions.reduce(
+  (currentState, instruction) => makeStep(
+    currentState, instruction
   ),
-  ({ directionIndex, coordinates })
+  initialState
 );
 
-({coordinates} = result);
-
-console.log(coordinates.map(num => Math.abs(num)).reduce((a,b) => a + b));
+console.log(
+  finalState.coordinates
+    .map(num => Math.abs(num))
+    .reduce((a,b) => a + b)
+);
