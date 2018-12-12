@@ -21,10 +21,11 @@ keypad.forEach((row, j) => {
   })
 })
 
-
-
 const numberToNode = (number) => {
-  return keypadObject[number];
+  return [...keypadObject[number]];
+      // this spread is crucial
+      // without it mutating node in the main program
+      // spoils all the keypad data in this module
 }
 
 const nodeToNumber = (node) => {
