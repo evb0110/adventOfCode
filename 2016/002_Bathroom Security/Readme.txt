@@ -1,1 +1,1 @@
-https://adventofcode.com/2016/day/2/input
+https://adventofcode.com/2016/day/2
