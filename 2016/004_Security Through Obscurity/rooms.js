@@ -13,30 +13,33 @@ const proceedRoom = (currentSum, room) => {
 
     return [...[left, id, checksum]];
   }
-
-  const histogram = (line) => {
+  
+  const histogramFunctional = (line) => {
     const letters = line.split('');
-    let frequencies = {};
-    letters.forEach(letter => {
-      frequencies[letter] = frequencies[letter] + 1 || 1;
-    });
-    return {...frequencies};
+  
+    const processLetter = (currentHistogram, letter) => {
+      histogram = {...currentHistogram};
+      histogram[letter] = histogram[letter] + 1 || 1;
+      return histogram;
+    }
+  
+    return letters.reduce((acc, letter) => processLetter(acc, letter), {});
   }
 
-  const histogramToArray = (frequencies) => {
-    return Object.keys(frequencies).sort((a, b) => {
-      a_ = -frequencies[a];
-      b_ = -frequencies[b];
+  const histogramToArray = (histogram) => {
+    return Object.keys(histogram).sort((a, b) => {
+      a_ = -histogram[a];
+      b_ = -histogram[b];
       if (a_ == b_) {
         a_ = a.charCodeAt();
         b_ = b.charCodeAt();
       }
-      return (a_ - b_) / Math.abs(a_ - b_);
+      return Math.sign(a_ - b_);
     })
   }
 
   [left, id, checksum] = splitRoom(room);
-  const myHistogram = histogram(left);
+  const myHistogram = histogramFunctional(left);
   const arr = histogramToArray(myHistogram);
   const myChecksum = arr.slice(0, 5).join('');
   return (myChecksum == checksum)
