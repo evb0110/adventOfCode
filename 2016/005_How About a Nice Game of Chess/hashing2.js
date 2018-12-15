@@ -25,10 +25,10 @@ while (passCount < 8) {
   condition = res.startsWith(fiveZerosString);
   if (condition) {
     if (
-      Number.isInteger(+res[5]) &&
-      +res[5] >= 0 &&
-      +res[5] < 8 &&
-      !pass[+res[5]]      
+        Number.isInteger(+res[5]) &&
+        +res[5] >= 0 &&
+        +res[5] < 8 &&
+        !pass[+res[5]]      
       ) {
       pass[+res[5]] = res[6];
       passCount++;
