@@ -8,7 +8,6 @@ const acHash = data => crypto
   .update(data)
   .digest("hex");
 
-// const fiveZerosRegex = /^00000/;
 const fiveZerosString = "00000";
 const id = "abbhdwsy";
 const startIndex = 0;
@@ -21,7 +20,6 @@ const pass = [];
 while (passCount < 8) {
   let str = id + '' + idx;
   let res = acHash(str);
-  // condition = res.match(fiveZerosRegex);
   condition = res.startsWith(fiveZerosString);
   if (condition) {
     if (
@@ -38,5 +36,8 @@ while (passCount < 8) {
   }
   idx++;
 }
+
+
+
 
 console.log(pass.join(''));
