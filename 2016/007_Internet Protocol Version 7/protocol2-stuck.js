@@ -2,8 +2,8 @@ const fs = require('fs');
 const input = fs.readFileSync('input.txt', 'utf-8').split('\n');
 
 // WRONG REGEXES!!!
-const sslRegex1 = /(.)(.)\1.*\[[\]]*\2\1\2/;
-const sslRegex2 = /(.)(.)\1.*\][\[]*\2\1\2/;
+const sslRegex1 = /(^|\])[^[]*(.)(.)\1.*\[[^\]]*\2\1\2/;
+const sslRegex2 = /(.)(.)\1[^[]*\].*\2\1\2[^\]]*(\[|$)/;
 
 const supportsSSL = (str, sslRegex1, sslRegex2) => {
   const match1 = str.match(sslRegex1);
