@@ -12,4 +12,7 @@ const abbaMatches = (str) => {
   return verdict;
 }
 
+// const str = 'aadda';
+// console.log(abbaMatches(str));
+
 module.exports = { abbaMatches }

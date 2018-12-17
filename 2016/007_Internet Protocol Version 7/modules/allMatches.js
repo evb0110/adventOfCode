@@ -7,7 +7,7 @@ const allMatches = (str, reg) => {
   return matches;
 }
 
-// let res = allMatches("abdefdba", /.(b)./g);
+// let res = allMatches("abdefdeba", /(.)d/g);
 // console.log(res);
 
 module.exports = { allMatches }

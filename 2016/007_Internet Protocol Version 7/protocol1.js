@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {supportsTLS} = require('./supportsTLS.js');
+const {supportsTLS} = require('./modules/supportsTLS.js');
 
 
 const input = fs.readFileSync('input.txt', 'utf-8').split('\n');
