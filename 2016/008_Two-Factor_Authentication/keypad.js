@@ -55,7 +55,7 @@ const rotx = (A, B, screen) => {
 })
 
 const dispatch = (line => {
-  const [A, B] = line.match(/\d+/g);
+  const [A, B] = line.match(/\d+/g).map(x => +x);
   if (line.includes("rect")) return [RECT, A, B];
   if (line.includes("column")) return [ROTX, A, B];
   if (line.includes("row")) return [ROTY, A, B];
@@ -69,15 +69,3 @@ const result = input.reduce((acc, line) => {
 }, initScreen);
 
 console.log(result.toString().split(',').filter(a => a == 'true').length);
-
-
-// console.log(
-//   R.compose(
-//     ROTX(1, 1),
-//     ROTY(0, 4),
-//     ROTX(1, 1), 
-//     RECT(3, 2),
-//     )(screen)
-//   );
-
-
