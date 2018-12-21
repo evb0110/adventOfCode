@@ -1,10 +1,11 @@
 const fs = require('fs');
 const input = fs.readFileSync('input.txt', 'utf-8');
-const R = require('ramda');
 
 const leftInitial = '';
 
 const step = ([left, right]) => {
+  console.log(ITERATION++);
+
   const commandRegex = /\([^\)]+\)/;
   const match = right.match(commandRegex);
   if (!match) { return left + right };
@@ -16,8 +17,17 @@ const step = ([left, right]) => {
   const stringToRepeat = right.slice(matchIndexAfter, matchIndexAfter + A);
   const currentRight = right.slice(matchIndexAfter + A);
    const currentLeft = left + right.slice(0, matchIndexBefore + 1) + stringToRepeat.repeat(B);
+
   return step([currentLeft, currentRight]);
 }
 
-const result = step([leftInitial, input]);
+const steps = ([left, right]) => {
+  
+  if (!right.includes('(')) return right;
+  const currentResult = step([left, right]);
+  return steps([leftInitial, currentResult]);  
+}
+const result = steps([leftInitial, input]);
+
 console.log(result.length);
+
