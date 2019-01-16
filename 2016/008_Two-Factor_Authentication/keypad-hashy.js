@@ -88,6 +88,6 @@ function visualize(screen, iteration) {
     console.log(row);
   }
   console.log(iteration);
-  sleep.msleep(150);
+  sleep.msleep(350);
 
 }
